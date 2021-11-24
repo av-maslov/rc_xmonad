@@ -379,7 +379,7 @@ myAdditionalKeys =
         , ("M-M1-h", spawn (myTerminal ++ " -e htop"))
         , ("M-M1-a", spawn (myTerminal ++ " -e alsamixer"))
         , ("M1-<Tab>", windows W.focusDown)
-        , ("M2-<Tab>", windows W.focusDown)
+        --, ("M2-<Tab>", windows W.focusDown)
     ]
 
 

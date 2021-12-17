@@ -69,10 +69,10 @@ winType  = "#c678dd"
 
 myModMask = mod4Mask
 encodeCChar = map fromIntegral . B.unpack
-myFocusFollowsMouse = True
+myFocusFollowsMouse = False
 myBorderWidth = 2
 myWorkspaces    = ["\61612","\61899","\61947","\61635","\61502","\61501","\61705","\61564","\62150","\61872"]
---myWorkspaces    = ["1","2","3","4","5","6","7","8","9","10"]
+-- myWorkspaces    = ["1","2","3","4","5","6","7","8","9","10"]
 --myWorkspaces    = ["I","II","III","IV","V","VI","VII","VIII","IX","X"]
 
 myBaseConfig = desktopConfig
@@ -242,7 +242,9 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
   --, ((0, xK_Print), spawn $ "scrot 'Screenshot-%Y-%m-%d-%s_$wx$h.jpg' -e 'mv $f $$(xdg-user-dir PICTURES)'")
   --, ((0, xK_Print), spawn $ "scrot -s 'Screenshot-%Y-%m-%d-%s_$wx$h.jpg' -e 'mv $f ~/scrot/'")
   , ((0, xK_Print), spawn $ "scrot 'Screenshot-%Y-%m-%d-%s_$wx$h.jpg' -e 'mv $f ~/scrot/'")
-  , ((controlMask, xK_Print), spawn $ "xfce4-screenshooter" )
+  --, ((0, xK_Print), spawn $ "flameshot gui")
+  --, ((controlMask, xK_Print), spawn $ "xfce4-screenshooter" )
+  , ((controlMask, xK_Print), spawn $ "flameshot gui" )
   , ((controlMask .|. shiftMask , xK_Print ), spawn $ "gnome-screenshot -i")
 
 
@@ -369,12 +371,12 @@ myAdditionalKeys :: [(String, X ())]
 myAdditionalKeys =
     [
         -- KB_GROUP Useful programs to have a keybinding for launch
-        ("M-<Return>", spawn (myTerminal)),
-        ("M-b", spawn "firefox")
-        ("M-z", spawn "brave")
+        ("M-<Return>", spawn (myTerminal))
+        , ("M-b", spawn "firefox")
+        , ("M-z", spawn "brave")
         , ("M-f", spawn "google-chrome-stable")
-        --, ("M-M1-s", spawn "sleep 0.2; scrot -s -o scrot/t.png; xclip -selection clipboard -t image/png -i scrot/t.png")
-        , ("M-s", spawn "sleep 0.2; scrot -s -o scrot/t.png; xclip -selection clipboard -t image/png -i scrot/t.png")
+        , ("M-m", spawn "sleep 0.2; scrot -s -o scrot/t.png; xclip -selection clipboard -t image/png -i scrot/t.png")
+        , ("M-s", spawn "flameshot gui")
         , ("M-e", spawn (myEmacs))
         , ("M-M1-h", spawn (myTerminal ++ " -e htop"))
         , ("M-M1-a", spawn (myTerminal ++ " -e alsamixer"))

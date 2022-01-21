@@ -375,8 +375,10 @@ myAdditionalKeys =
         , ("M-b", spawn "firefox")
         , ("M-z", spawn "brave")
         , ("M-f", spawn "google-chrome-stable")
-        , ("M-m", spawn "sleep 0.2; scrot -s -o scrot/t.png; xclip -selection clipboard -t image/png -i scrot/t.png")
-        , ("M-s", spawn "flameshot gui")
+        --, ("M-s", spawn "sleep 0.2; scrot -s -o scrot/Screenshot-%Y-%m-%d-%s_$wx$h.PNG; xclip -selection clipboard -t image/png -i scrot/Screenshot-%Y-%m-%d-%s_$wx$h.PNG")
+        --, ("M-s", spawn "scrot -s -o '/tmp/%F_%T_$wx$h.png' -e 'xclip -selection clipboard -target image/png -i $f'")
+        , ("M-s", spawn "scrot -s -o '/home/al/scrot/%F_%T_$wx$h.png' -e 'xclip -selection clipboard -target image/png -i $f'")
+        , ("M-m", spawn "flameshot gui")
         , ("M-e", spawn (myEmacs))
         , ("M-M1-h", spawn (myTerminal ++ " -e htop"))
         , ("M-M1-a", spawn (myTerminal ++ " -e alsamixer"))
@@ -404,7 +406,8 @@ main = do
             --myBaseConfig { keys = belgianKeys <+> keys belgianConfig }
 
                 {startupHook = myStartupHook
-, layoutHook = gaps [(U,35), (D,5), (R,5), (L,5)] $ myLayout ||| layoutHook myBaseConfig
+--, layoutHook = gaps [(U,35), (D,5), (R,5), (L,5)] $ myLayout ||| layoutHook myBaseConfig
+, layoutHook = gaps [(U,5), (D,35), (R,5), (L,5)] $ myLayout ||| layoutHook myBaseConfig
 , manageHook = manageSpawn <+> myManageHook <+> manageHook myBaseConfig
 , modMask = myModMask
 , borderWidth = myBorderWidth

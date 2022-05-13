@@ -112,9 +112,6 @@ myManageHook = composeAll . concat $
     -- my9Shifts = []
     -- my10Shifts = ["discord"]
 
-
-
-
 myLayout = spacingRaw True (Border 0 5 5 5) True (Border 5 5 5 5) True $ avoidStruts $ mkToggle (NBFULL ?? NOBORDERS ?? EOT) $ tiled ||| Mirror tiled |||  Full
     where
         tiled = Tall nmaster delta tiled_ratio
@@ -176,7 +173,7 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
 
 
   -- FUNCTION KEYS
-  , ((0, xK_F12), spawn $ "xfce4-terminal --drop-down" )
+  , ((0, xK_F11), spawn $ "xfce4-terminal --drop-down" )
 
   -- SUPER + SHIFT KEYS
 
@@ -362,8 +359,12 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
   -- ctrl-{w,e,r}, Switch to physical/Xinerama screens 1, 2, or 3
   -- ctrl-shift-{w,e,r}, Move client to screen 1, 2, or 3
   [((m .|. controlMask, key), screenWorkspace sc >>= flip whenJust (windows . f))
-      | (key, sc) <- zip [xK_i, xK_e] [0..]
+      | (key, sc) <- zip [xK_i, xK_x] [0..]
       , (f, m) <- [(W.view, 0), (W.shift, shiftMask)]]
+-- Replace xK e, to fix Ctrl e in vim
+  -- [((m .|. controlMask, key), screenWorkspace sc >>= flip whenJust (windows . f))
+  --     | (key, sc) <- zip [xK_i, xK_e] [0..]
+  --     , (f, m) <- [(W.view, 0), (W.shift, shiftMask)]]
 
 -- https://gitlab.com/dwt1/dotfiles/-/blob/master/.xmonad/xmonad.hs
 -- https://hackage.haskell.org/package/xmonad-contrib-0.17.0/docs/XMonad-Util-EZConfig.html
